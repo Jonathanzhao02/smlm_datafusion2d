@@ -53,6 +53,13 @@ function [ NewParticle ] = resampleCloud2D(Particle)
     % act like addgaussianblob
     fsize = double(meansigma./binsize(1));  % filter size
     
+    %disp("Params:");
+    %disp(dmax);
+    %disp(dmin);
+    %disp(meansigma);
+    %disp(binsize);
+    %disp(fsize);
+
     % smoothe the image
     f = fspecial('gaus',[round(7*fsize)+1 round(7*fsize)+1],fsize);
     

@@ -28,7 +28,7 @@
 %
 % Hamidreza Heydarian, 2017
 
-function all2all(Particles, outdir, scale)
+function all2all(Particles, outdir, scale, nAngles)
 
     % setup pyramid, determine the pyramid height or the number of layers
     N = numel(Particles);
@@ -38,14 +38,14 @@ function all2all(Particles, outdir, scale)
     for idxM = 1:N-1
         tic
         disp(['row ' num2str(idxM) ' started!']);
-        parfor idxS = idxM+1:N
+        for idxS = idxM+1:N
 
             M = Particles{idxM};
             S = Particles{idxS};
             
             % perform pairwise registration for each element of all2all
             % matrix
-            [param, ~, ~, ~, val] = pairFitting(M, S, scale,6);
+            [param, ~, ~, ~, val] = pairFitting(M, S, scale, nAngles);
 
             % registration parameters, cost function value and idicators
             % are stored in the result structure

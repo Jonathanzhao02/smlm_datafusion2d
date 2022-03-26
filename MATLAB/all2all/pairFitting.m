@@ -45,7 +45,7 @@ function [parameter, registered_model, history, config, max_value] = pairFitting
                       
     %angle = [-pi -pi/2 0 pi/2 pi 3*pi/2 2*pi];     % inital angles
     angle = linspace(-pi,(pi-2*pi/nAngles),nAngles); 
-                     
+    
     % an automatic scale selection 
     % [n,d] = size(M.points);
     % scale = power(det(M.points'*M.points/n), 1/(2^d))/2;    

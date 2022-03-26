@@ -33,11 +33,16 @@
 % Diederik Feilzer, July 2015
 % Revision: Hamidreza Heydarian, 2017
 
-function [dip, Z] = visualizeCloud2D(X, n, diameter, angle, caption)
+function [dip, Z] = visualizeCloud2D(X, n, diameter, angle, caption, f)
 
     if nargin <5
         caption = '';
     end
+
+    if nargin <6
+        f = figure;
+    end
+
     % rotation matrix
     Rot = [cos(angle) -sin(angle); sin(angle) cos(angle)];
 
@@ -65,7 +70,7 @@ function [dip, Z] = visualizeCloud2D(X, n, diameter, angle, caption)
     Z = accumarray([xr yr],1, [n n]);
     
     % display the image with hot colormap
-    dip = dipshow(Z','lin');
+    dip = dipshow(f, Z','lin');
     dipmapping(dip,[0 max(Z(:))],'COLORMAP',hot(256));
     axis equal
     

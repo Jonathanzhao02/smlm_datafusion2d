@@ -44,10 +44,12 @@
 %
 % Hamidreza Heydarian, 2017
 
-function [parameter, registered_model, history, config, max_value] = pairFitting_symmetric(M, S, scale) 
-                                    
-    Nfold = 8; 
-    angle = linspace(-pi,pi-2*pi/Nfold,Nfold);  %initial angles
+function [parameter, registered_model, history, config, max_value] = pairFitting_symmetric(M, S, scale, nAngles)                                     
+    if nargin < 4
+        nAngles = 8;
+    end
+
+    angle = linspace(-pi,pi-2*pi/nAngles,nAngles);  %initial angles
     
 	% generate all permutation of initial grid and scale
 	[init_scale, init_angle] = ndgrid(scale, angle);

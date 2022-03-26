@@ -40,10 +40,13 @@
 %
 % Hamidreza Heydarian, 2017
 
-function [parameter, registered_model, history, config, max_value] = pairFitting_parallel(M, S, scale) 
+function [parameter, registered_model, history, config, max_value] = pairFitting_parallel(M, S, scale, nAngles)
+    if nargin < 4
+        nAngles = 6;
+    end
                                     
     %angle = [-pi -pi/2 0 pi/2 pi 3*pi/2 2*pi];     % inital angles
-    angle = linspace(-pi,2*pi/3,6); 
+    angle = linspace(-pi,pi-2*pi/nAngles,nAngles);
 
     % an automatic scale selection 
     % [n,d] = size(M.points);
