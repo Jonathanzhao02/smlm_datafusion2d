@@ -30,7 +30,7 @@
 %
 % Hamidreza Heydarian, Oct 2017.
 
-function [ superParticle, MT] = one2all(Particles, iter, oldM, outdir,scale)
+function [ superParticle, MT] = one2all(Particles, iter, oldM, outdir,scale,nAngles)
 
     disp('Bootstapping is started  !');
     initParticle.points = [];
@@ -61,7 +61,7 @@ function [ superParticle, MT] = one2all(Particles, iter, oldM, outdir,scale)
             end
             M = Particles{1,i};
             S = delParticle(Particles, initParticle, i);
-            [parameter{j,i}, ~, ~, ~, ~] = pairFitting_parallel(M, S,scale);
+            [parameter{j,i}, ~, ~, ~, ~] = pairFitting_parallel(M, S,scale, nAngles);
             tmpParticle.points = [tmpParticle.points; transform_by_rigid2d(M.points, parameter{j,i})];
             tmpParticle.sigma = [tmpParticle.sigma; M.sigma];
             Particles{1,i}.points = transform_by_rigid2d(M.points, parameter{j,i}); 
